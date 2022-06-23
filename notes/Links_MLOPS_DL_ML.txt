@@ -1,0 +1,29 @@
+Stanford CS221: Artificial Intelligence: Principles and Techniques | Autumn 2019
+https://www.youtube.com/playlist?list=PLoROMvodv4rO1NB9TD4iUZ3qghGEGtqNX
+
+Introduction to reinforcement learning
+https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ
+
+Docker Tutorial for Beginners [FULL COURSE in 3 Hours]
+https://www.youtube.com/watch?v=3c-iBn73dDE
+
+Complete Kubernetes Tutorial for Beginners
+https://www.youtube.com/playlist?list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC
+
+Jenkins Tutorial for Beginners
+https://www.youtube.com/playlist?list=PLy7NrYWoggjw_LIiDK1LXdNN82uYuuuiC
+
+AZURE DATABRICKS ETL
+https://www.topcoder.com/thrive/articles/azure-databricks-etl
+
+GL Statistical Case Study
+https://drive.google.com/drive/folders/12V8U791SCf2MFXPBdmfD-URdhLmSKw1i
+
+Automated Feature Engineering
+https://drive.google.com/drive/folders/1_62AmoSxfhYVdEB_-X4uMZq6Whbz1Sc_
+
+Digital Assistant AI
+https://youtu.be/Y5atyJbVsAU
+
+Loan Default Probability
+https://github.com/tatsath/fin-ml/blob/master/Chapter%206%20-%20Sup.%20Learning%20-%20Classification%20models/CaseStudy2%20-%20Loan%20Default%20Probability/LoanDefaultProbability.ipynb

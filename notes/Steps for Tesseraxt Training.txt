@@ -1,0 +1,67 @@
+https://www.youtube.com/watch?v=
+
+https://youtu.be/JPDeiGc2an8
+
+https://youtu.be/RPflvqqhdXs
+
+https://youtu.be/l-rCdHjCq1A
+
+https://github.com/tesseract-ocr/tessdata_best
+
+https://github.com/tesseract-ocr/tessdata_fast
+
+https://tesseract-ocr.github.io/tessdoc/#traineddata-files
+
+https://tesseract-ocr.github.io/tessdoc/tess4/TrainingTesseract-4.00.html
+
+https://tesseract-ocr.github.io/tessdoc/#training-for-tesseract-5
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+https://tesseract-ocr.github.io/tessdoc/tess4/TrainingTesseract-4.00.html
+
+https://github.com/tesseract-ocr/tessdata
+
+https://github.com/tesseract-ocr/tesstrain
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+https://towardsdatascience.com/simple-ocr-with-tesseract-a4341e4564b6
+
+
+https://gaopengbai0121.medium.com/training-your-tesseract-on-windows-10-df6756946d4f
+
+cd C:\Users\Ganga Babu.M\AppData\Local\Programs\Tesseract-OCR
+
+Note : 
+
+tesseract test.png output_1 –l eng
+tesseract imagename outputbase [-l lang] [-psm pagesegmode] [configfile…]
+
+
+####################################
+https://youtu.be/qLpCld4cdtk
+
+Try :
+
+tesseract E:\OCR\Training_tesseract\Test.png output_1 –l eng
+
+Now we got output_1.txt file contains Predicted result from Test.png 
+Ground Truth	:	762408
+Predicted	:	162408
+
+
+------------------------->
+
+open CMD
+
+E: cd E:\OCR\Training_tesseract\jTessBoxEditorFX
+
+Refer : readme.html
+
+file:///E:/OCR/Training_tesseract/jTessBoxEditorFX/readme.html
+
+java -Xms128m -Xmx1024m -jar jTessBoxEditorFX.jar

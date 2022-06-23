@@ -1,0 +1,663 @@
+my-kubernetes-codelab-350104
+
+Project name
+My First Project
+Project number
+691636064781
+Project ID
+my-first-project-350104
+
+gcloud auth list
+
+gcloud config list project
+Command output
+
+
+[core]
+project = <PROJECT_ID>
+If it is not, you can set it with this command:
+
+
+gcloud config set project <PROJECT_ID>
+Command output
+
+
+Updated property [core/project].
+
+
+3. Enable the Document AI API
+
+Alternatively, the API can be enabled using the following gcloud command.
+
+gcloud services enable documentai.googleapis.com
+You should see something like this:
+
+
+Operation "operations/..." finished successfully.
+Now, you can use Document AI!
+
+
+
+-------------------------------
+
+Form Parsing with Document AI (Python)
+
+2. Setup and Requirements
+This codelab assumes you have completed the Document AI setup steps listed in the Document AI OCR Codelab.
+
+Please complete the following steps before proceeding:
+
+Start Cloud Shell
+Enable the Document AI API
+Install the Python Client Library
+You will also need to install Pandas, an Open Source Data Analysis library for Python.
+
+
+pip3 install --upgrade pandas
+
+
+4. Download the Sample Form
+We have a sample document which contains a simple medical intake form.
+
+You can download the PDF using the following link. Then upload it to the cloudshell instance.
+
+file_downloadDownload intake-form.pdf
+
+Alternatively, you can download it from our public Google Cloud Storage Bucket using gsutil.
+
+
+gsutil cp gs://cloud-samples-data/documentai/codelabs/form-parser/intake-form.pdf .
+Confirm the file is downloaded to your cloudshell using the below command:
+
+
+ls -ltr intake-form.pdf
+
+5. Extract Form Key/Value Pairs
+In this step you will use the online processing API to call the form parser processor you created previously. Then, you will extract the key value pairs found in the document.
+
+Online processing is for sending a single document and waiting for the response. You can also use batch processing if you want to send multiple files or if the file size exceeds the online processing maximum pages. You can review how to do this in the OCR Codelab.
+
+The code for making a process request is identical for every processor type aside from the Processor ID.
+
+The Document response object contains a list of pages from the input document.
+
+Each page object contains a list of form fields and their locations in the text.
+
+The following code iterates through each page and extracts each key, value and confidence score. This is structured data that can more easily stored in databases or used in other applications.
+
+Create a file called form_parser.py and use the code below.
+
+form_parser.py
+
+import pandas as pd
+from google.cloud import documentai_v1 as documentai
+
+
+def online_process(
+    project_id: str,
+    location: str,
+    processor_id: str,
+    file_path: str,
+    mime_type: str,
+) -> documentai.Document:
+    """
+    Processes a document using the Document AI Online Processing API.
+    """
+
+    opts = {"api_endpoint": f"{location}-documentai.googleapis.com"}
+
+    # Instantiates a client
+    documentai_client = documentai.DocumentProcessorServiceClient(client_options=opts)
+
+    # The full resource name of the processor, e.g.:
+    # projects/project-id/locations/location/processor/processor-id
+    # You must create new processors in the Cloud Console first
+    resource_name = documentai_client.processor_path(project_id, location, processor_id)
+
+    # Read the file into memory
+    with open(file_path, "rb") as image:
+        image_content = image.read()
+
+        # Load Binary Data into Document AI RawDocument Object
+        raw_document = documentai.RawDocument(
+            content=image_content, mime_type=mime_type
+        )
+
+        # Configure the process request
+        request = documentai.ProcessRequest(
+            name=resource_name, raw_document=raw_document
+        )
+
+        # Use the Document AI client to process the sample form
+        result = documentai_client.process_document(request=request)
+
+        return result.document
+
+
+def trim_text(text: str):
+    """
+    Remove extra space characters from text (blank, newline, tab, etc.)
+    """
+    return text.strip().replace("\n", " ")
+
+
+PROJECT_ID = "YOUR_PROJECT_ID"
+LOCATION = "YOUR_PROJECT_LOCATION"  # Format is 'us' or 'eu'
+PROCESSOR_ID = "FORM_PARSER_ID"  # Create processor in Cloud Console
+
+# The local file in your current working directory
+FILE_PATH = "form.pdf"
+# Refer to https://cloud.google.com/document-ai/docs/processors-list
+# for supported file types
+MIME_TYPE = "application/pdf"
+
+document = online_process(
+    project_id=PROJECT_ID,
+    location=LOCATION,
+    processor_id=PROCESSOR_ID,
+    file_path=FILE_PATH,
+    mime_type=MIME_TYPE,
+)
+
+names = []
+name_confidence = []
+values = []
+value_confidence = []
+
+for page in document.pages:
+    for field in page.form_fields:
+        # Get the extracted field names
+        names.append(trim_text(field.field_name.text_anchor.content))
+        # Confidence - How "sure" the Model is that the text is correct
+        name_confidence.append(field.field_name.confidence)
+
+        values.append(trim_text(field.field_value.text_anchor.content))
+        value_confidence.append(field.field_value.confidence)
+
+# Create a Pandas Dataframe to print the values in tabular format.
+df = pd.DataFrame(
+    {
+        "Field Name": names,
+        "Field Name Confidence": name_confidence,
+        "Field Value": values,
+        "Field Value Confidence": value_confidence,
+    }
+)
+
+print(df)
+Run your code now and you should see the text extracted and printed in your console.
+
+You should see the following output if using our sample document:
+
+
+$ python3 form_parser.py
+                                           Field Name  Field Name Confidence                                        Field Value  Field Value Confidence
+0                                            Phone #:               0.999982                                     (906) 917-3486                0.999982
+1                                  Emergency Contact:               0.999972                                         Eva Walker                0.999972
+2                                     Marital Status:               0.999951                                             Single                0.999951
+3                                             Gender:               0.999933                                                  F                0.999933
+4                                         Occupation:               0.999914                                  Software Engineer                0.999914
+5                                        Referred By:               0.999862                                               None                0.999862
+6                                               Date:               0.999858                                            9/14/19                0.999858
+7                                                DOB:               0.999716                                         09/04/1986                0.999716
+8                                            Address:               0.999147                                     24 Barney Lane                0.999147
+9                                               City:               0.997718                                             Towaco                0.997718
+10                                              Name:               0.997345                                       Sally Walker                0.997345
+11                                             State:               0.996944                                                 NJ                0.996944
+...
+
+
+Specialized Processors with Document AI (Python)
+
+
+2. Getting set up
+This codelab assumes you have completed the Document AI Setup steps listed in the Introductory Codelab.
+
+Please complete the following steps before proceeding:
+
+Start Cloud Shell
+Enable the Document AI API
+Install the Python Client Library
+You will also need to install Pandas, a popular Data Analysis library for Python.
+
+
+pip3 install --upgrade pandas
+
+3. Create specialized processors
+You must first create instances of the processors you will use for this tutorial.
+
+In the console, navigate to the Document AI Platform Overview
+Click Create Processor, scroll down to Specialized and select Procurement Doc Splitter.
+Give it the name "codelab-procurement-splitter" (Or something else you'll remember) and select the closest region on the list.
+Click Create to create your processor
+Copy the processor ID. You must use this in your code later.
+Repeat Steps 2-6 with the Invoice Parser (which you can name "codelab-invoice-parser")
+Test processor in the Console
+You can test out the Invoice Parser in the console by uploading a document.
+
+Click Upload Document and select an invoice to parse. You can download and use this sample invoice if you do not have one available to use.
+
+google_invoice.png
+
+file_downloadDownload google_invoice.PDF
+
+Your output should look like this:
+
+4. Download sample documents
+We have a few sample documents to use for this lab.
+
+You can download the PDFs using the following links. Then upload them to the Cloud Shell instance.
+
+file_downloadDownload procurement_multi_document.PDF
+
+file_downloadDownload google_invoice.PDF
+
+Alternatively, you can download them from our public Cloud Storage Bucket using gsutil.
+
+
+gsutil cp gs://cloud-samples-data/documentai/codelabs/specialized-processors/procurement_multi_document.pdf .
+
+gsutil cp gs://cloud-samples-data/documentai/codelabs/specialized-processors/google_invoice.pdf .
+
+
+
+
+5. Classify & split the documents
+In this step you will use the online processing API to classify and detect logical split points for a multi-page document.
+
+You can also use the batch processing API if you want to send multiple files or if the file size exceeds the online processing maximum pages. You can review how to do this in the Document AI OCR Codelab.
+
+The code for making the API request is identical for a general processor aside from the Processor ID.
+
+Procurement Splitter/Classifier
+Create a file called classification.py and use the code below.
+
+Replace PROCUREMENT_SPLITTER_ID with the ID for the Procurement Splitter Processor you created earlier. Replace YOUR_PROJECT_ID and YOUR_PROJECT_LOCATION with your Cloud Project ID and Processor Location respectively.
+
+classification.py
+
+import pandas as pd
+from google.cloud import documentai_v1 as documentai
+
+
+def online_process(
+    project_id: str,
+    location: str,
+    processor_id: str,
+    file_path: str,
+    mime_type: str,
+) -> documentai.Document:
+    """
+    Processes a document using the Document AI Online Processing API.
+    """
+
+    opts = {"api_endpoint": f"{location}-documentai.googleapis.com"}
+
+    # Instantiates a client
+    documentai_client = documentai.DocumentProcessorServiceClient(client_options=opts)
+
+    # The full resource name of the processor, e.g.:
+    # projects/project-id/locations/location/processor/processor-id
+    # You must create new processors in the Cloud Console first
+    resource_name = documentai_client.processor_path(project_id, location, processor_id)
+
+    # Read the file into memory
+    with open(file_path, "rb") as file:
+        file_content = file.read()
+
+    # Load Binary Data into Document AI RawDocument Object
+    raw_document = documentai.RawDocument(content=file_content, mime_type=mime_type)
+
+    # Configure the process request
+    request = documentai.ProcessRequest(name=resource_name, raw_document=raw_document)
+
+    # Use the Document AI client to process the sample form
+    result = documentai_client.process_document(request=request)
+
+    return result.document
+
+
+PROJECT_ID = "YOUR_PROJECT_ID"
+LOCATION = "YOUR_PROJECT_LOCATION"  # Format is 'us' or 'eu'
+PROCESSOR_ID = "PROCUREMENT_SPLITTER_ID"  # Create processor in Cloud Console
+
+# The local file in your current working directory
+FILE_PATH = "procurement_multi_document.pdf"
+# Refer to https://cloud.google.com/document-ai/docs/processors-list
+# for supported file types
+MIME_TYPE = "application/pdf"
+
+document = online_process(
+    project_id=PROJECT_ID,
+    location=LOCATION,
+    processor_id=PROCESSOR_ID,
+    file_path=FILE_PATH,
+    mime_type=MIME_TYPE,
+)
+
+print("Document processing complete.")
+
+types = []
+confidence = []
+pages = []
+
+# Each Document.entity is a classification
+for entity in document.entities:
+    classification = entity.type_
+    types.append(classification)
+    confidence.append(f"{entity.confidence:.0%}")
+
+    # entity.page_ref contains the pages that match the classification
+    pages_list = []
+    for page_ref in entity.page_anchor.page_refs:
+        pages_list.append(page_ref.page)
+    pages.append(pages_list)
+
+# Create a Pandas Dataframe to print the values in tabular format.
+df = pd.DataFrame({"Classification": types, "Confidence": confidence, "Pages": pages})
+
+print(df)
+
+Your output should look something like this:
+
+
+$ python3 classification.py
+Document processing complete.
+         Classification Confidence Pages
+0     invoice_statement       100%   [0]
+1     receipt_statement        98%   [1]
+2                 other        81%   [2]
+3     utility_statement       100%   [3]
+4  restaurant_statement       100%   [4]
+Note the Procurement Splitter/Classifier correctly identified the document types on pages 0-1 and 3-4.
+
+Page 2 contains a generic medical intake form, so the classifier correctly identified it as other.
+
+--------------
+
+6. Extract the entities
+Now you can extract the schematized entities from the files, including confidence scores, properties, and normalized values.
+
+The code for making the API request is identical to the previous step, and it can be done with online or batch requests.
+
+We will access the following information from the entities:
+
+Entity Type
+(e.g. invoice_date, receiver_name, total_amount)
+Raw Values
+Data values as presented in the original document file.
+Normalized Values
+Data values in a normalized and standard format, if applicable.
+Also can include enrichment from Enterprise Knowledge Graph
+Confidence Values
+How "sure" the model is that the values are accurate.
+Some entity types, such as line_item can also include properties which are nested entities such as line_item/unit_price and line_item/description.
+
+This example flattens out the nested structure for ease of viewing.
+
+Invoice Parser
+Create a file called extraction.py and use the code below.
+
+Replace INVOICE_PARSER_ID with the ID for the Invoice Parser Processor you created earlier and use the file google_invoice.pdf
+
+extraction.py
+
+import pandas as pd
+from google.cloud import documentai_v1 as documentai
+
+
+def online_process(
+    project_id: str,
+    location: str,
+    processor_id: str,
+    file_path: str,
+    mime_type: str,
+) -> documentai.Document:
+    """
+    Processes a document using the Document AI Online Processing API.
+    """
+
+    opts = {"api_endpoint": f"{location}-documentai.googleapis.com"}
+
+    # Instantiates a client
+    documentai_client = documentai.DocumentProcessorServiceClient(client_options=opts)
+
+    # The full resource name of the processor, e.g.:
+    # projects/project-id/locations/location/processor/processor-id
+    # You must create new processors in the Cloud Console first
+    resource_name = documentai_client.processor_path(project_id, location, processor_id)
+
+    # Read the file into memory
+    with open(file_path, "rb") as file:
+        file_content = file.read()
+
+    # Load Binary Data into Document AI RawDocument Object
+    raw_document = documentai.RawDocument(content=file_content, mime_type=mime_type)
+
+    # Configure the process request
+    request = documentai.ProcessRequest(name=resource_name, raw_document=raw_document)
+
+    # Use the Document AI client to process the sample form
+    result = documentai_client.process_document(request=request)
+
+    return result.document
+
+
+PROJECT_ID = "YOUR_PROJECT_ID"
+LOCATION = "YOUR_PROJECT_LOCATION"  # Format is 'us' or 'eu'
+PROCESSOR_ID = "INVOICE_PARSER_ID"  # Create processor in Cloud Console
+
+# The local file in your current working directory
+FILE_PATH = "google_invoice.pdf"
+# Refer to https://cloud.google.com/document-ai/docs/processors-list
+# for supported file types
+MIME_TYPE = "application/pdf"
+
+document = online_process(
+    project_id=PROJECT_ID,
+    location=LOCATION,
+    processor_id=PROCESSOR_ID,
+    file_path=FILE_PATH,
+    mime_type=MIME_TYPE,
+)
+
+types = []
+raw_values = []
+normalized_values = []
+confidence = []
+
+# Grab each key/value pair and their corresponding confidence scores.
+for entity in document.entities:
+    types.append(entity.type_)
+    raw_values.append(entity.mention_text)
+    normalized_values.append(entity.normalized_value.text)
+    confidence.append(f"{entity.confidence:.0%}")
+
+    # Get Properties (Sub-Entities) with confidence scores
+    for prop in entity.properties:
+        types.append(prop.type_)
+        raw_values.append(prop.mention_text)
+        normalized_values.append(prop.normalized_value.text)
+        confidence.append(f"{prop.confidence:.0%}")
+
+# Create a Pandas Dataframe to print the values in tabular format.
+df = pd.DataFrame(
+    {
+        "Type": types,
+        "Raw Value": raw_values,
+        "Normalized Value": normalized_values,
+        "Confidence": confidence,
+    }
+)
+
+print(df)
+
+Your output should look something like this:
+
+
+$ python3 extraction.py
+                     Type                                         Raw Value Normalized Value Confidence
+0                     vat                                         $1,767.97                        100%
+1          vat/tax_amount                                         $1,767.97      1767.97 USD         0%
+2            invoice_date                                      Sep 24, 2019       2019-09-24        99%
+3                due_date                                      Sep 30, 2019       2019-09-30        99%
+4            total_amount                                         19,647.68         19647.68        97%
+5        total_tax_amount                                         $1,767.97      1767.97 USD        92%
+6              net_amount                                         22,379.39         22379.39        91%
+7           receiver_name                                       Jane Smith,                         83%
+8              invoice_id                                         23413561D                         67%
+9        receiver_address  1600 Amphitheatre Pkway\nMountain View, CA 94043                         66%
+10         freight_amount                                           $199.99       199.99 USD        56%
+11               currency                                                 $              USD        53%
+12          supplier_name                                        John Smith                         19%
+13         purchase_order                                         23413561D                          1%
+14        receiver_tax_id                                         23413561D                          0%
+15          supplier_iban                                         23413561D                          0%
+16              line_item                   9.99 12 12 ft HDMI cable 119.88                        100%
+17   line_item/unit_price                                              9.99             9.99        90%
+18     line_item/quantity                                                12               12        77%
+19  line_item/description                                  12 ft HDMI cable                         39%
+20       line_item/amount                                            119.88           119.88        92%
+21              line_item           12 399.99 27" Computer Monitor 4,799.88                        100%
+22     line_item/quantity                                                12               12        80%
+23   line_item/unit_price                                            399.99           399.99        91%
+24  line_item/description                              27" Computer Monitor                         15%
+25       line_item/amount                                          4,799.88          4799.88        94%
+26              line_item                Ergonomic Keyboard 12 59.99 719.88                        100%
+27  line_item/description                                Ergonomic Keyboard                         32%
+28     line_item/quantity                                                12               12        76%
+29   line_item/unit_price                                             59.99            59.99        92%
+30       line_item/amount                                            719.88           719.88        94%
+31              line_item                     Optical mouse 12 19.99 239.88                        100%
+32  line_item/description                                     Optical mouse                         26%
+33     line_item/quantity                                                12               12        78%
+34   line_item/unit_price                                             19.99            19.99        91%
+35       line_item/amount                                            239.88           239.88        94%
+36              line_item                      Laptop 12 1,299.99 15,599.88                        100%
+37  line_item/description                                            Laptop                         83%
+38     line_item/quantity                                                12               12        76%
+39   line_item/unit_price                                          1,299.99          1299.99        90%
+40       line_item/amount                                         15,599.88         15599.88        94%
+41              line_item              Misc processing fees 899.99 899.99 1                        100%
+42  line_item/description                              Misc processing fees                         22%
+43   line_item/unit_price                                            899.99           899.99        91%
+44       line_item/amount                                            899.99           899.99        94%
+45     line_item/quantity                                                 1                1        63%
+
+
+--------------------------
+
+
+Document AI: Human in the Loop
+
+3. Create a Processor
+You must first create an instance of the Expense Processor to use for this lab.
+
+In the console, navigate to the Document AI Platform Overview
+Click "Create Processor", scroll down to "Specialized" and select "Expense Parser".
+Give it the name codelab-expense-parser (Or something else you'll remember) and select the closest region on the list.
+Click Create to create your processor
+Copy the processor ID. You must use this in your code later.
+In the Cloud Shell, create a storage bucket using PROJECT_ID-hitl-results as the name:
+
+export PROJECT_ID=$(gcloud config get-value core/project)
+gsutil mb gs://$PROJECT_ID-hitl-results
+Bind your user account to the Vertex AI Admin IAM role on your lab project
+
+export USER_ACCOUNT=$(gcloud config get-value core/account)
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=user:$USER_ACCOUNT --role=roles/aiplatfor
+
+4. Configure Human-in-the-loop
+In this task, you will configure human review for the expense processor you created earlier.
+
+In the console, open the Navigation menu and select Document AI.
+Click Human-in-the-loop AI. HITLMenu
+Click codelab-expense-parser to open the Human Review page for the processor.
+Click Configure Human-in-the-Loop.
+ConfigureHITL
+
+Select Document Level Filter.
+Set the Confidence threshold % slider to 50%.
+Leave the Specialists option set to Use my own specialists.
+HITLFilters
+
+Click in the Specialist pool drop down box and click NEW SPECIALIST POOL.
+For Pool name enter Codelab HITL Pool in the New specialist pool dialog.
+Enter your personal email address for the Pool Managers and Specialists
+Click Create pool.
+HITLSpecialistPool
+
+This will take a few minutes to complete. You should receive an email from Vertex AI noreply-vertex@google.com.
+
+NOTE: Click on retry if you had any permission issues. You must have the Cloud IAM aiplatform.specialistPools.create permission which requires theroles/aiplatform.admin role assigned to your user account at the project level.
+
+roles/project.owner is not sufficient on its own.
+
+Leave the Auto-assignment Checkbox unchecked.
+Click the checkbox in Confirm charges section.
+Click Instructions location and copy in this storage location: - Do NOT include the prefix gs:// in the path
+
+cloud-samples-data/documentai/codelabs/hitl/hitl-instructions.pdf
+NOTE: This document is a copy of the guidelines for creating reviewer instructions sets, not a working example.
+
+In Results location, click Browse and select the Cloud Storage bucket you created earlier.
+Click Select.
+Click Save Configuration.
+The Console will now say Configuring human-in-the-loop and will take a few minutes to complete.
+
+HITLLoading
+
+When configuration is complete, the console will prompt you to Enable Human-in-the-loop.
+Click the Switch Button to enable.
+Then click ENABLE in the pop-up dialog.
+HITLEnable
+
+Upload a Sample Expense Form
+We have a sample form to use stored in Google Cloud Storage. You can download it with the button or command below:
+file_downloadDownload expense-claim.pdf
+
+
+gsutil cp gs://cloud-samples-data/documentai/codelabs/hitl/expense-claim.pdf .
+After enabling Human-in-the-loop, click the Upload Document button and browse for the sample document you just downloaded.
+Click Upload and wait for it to complete.
+
+5. Assign an item for human review
+On this page, you should see links for the Pool Manager and Specialist Consoles. These links will also show up in an email from Vertex AI noreply-vertex@google.com.
+They should look like https://datacompute.google.com/cm/cloudml_data_specialists_us_central1_xxxxxxx/tasks
+Click on the link for the Manager console.
+
+
+Once in the Data Labeling Console, click the Tasks tab title to open the task assignment page.
+Click the Unassigned check box. You should see that a new entry is listed against the codelab-expense-parser-P1 task queue.
+image
+
+Select codelab-expense-parser-P1.
+Click Manage Assignment.
+Enter your own personal email in the Include specialists by email text box and then select it from the dropdown list.
+Click Apply.
+The display now shows that the task is assigned to you. You may find that this may take a few minutes to propagate and become visible.
+
+image
+
+Select the new user and click the menu icon.
+Click Assign to all tasks from the pop-up menu that appears.
+image
+
+Click Commit changes.
+Click Commit.
+
+
+6. Perform Human Review Task
+Go back to the Human-in-the-Loop configuration page in the Cloud Console.
+Click the link to visit the Specialist (Worker) console. This will look like https://datacompute.google.com/w/cloudml_data_specialists_us_central1_xxxxxxxxxxx.
+
+The worker console should open and list your new task.
+
+image
+
+Hover over the line item that contains Meeting with 4m and click the edit (pencil) icon.
+Edit the value to change the text to say Meeting with Adam. You may have to scroll down in the text box to see the text.
+Click Apply.
+Click the Confirm (green tick) icon for the below item. image
+Click the Confirm icon for the other highlighted entities.
+Click Submit. The review task has now been removed from your labeler queue.

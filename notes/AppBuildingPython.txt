@@ -1,0 +1,8 @@
+Build a Crypto Currency Portfolio App With Python
+https://codemy.com/build-crypto-currency-portfolio-app-python/
+
+Ruby on Rails Stock Market App
+https://codemy.com/ruby-rails-stock-market-app/
+
+Build a Stock Market Web App With Node
+https://codemy.com/build-stock-market-web-app-node/

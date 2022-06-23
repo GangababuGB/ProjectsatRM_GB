@@ -1,0 +1,47 @@
+https://www.nitorinfotech.com/blog/a-guide-to-google-cloud-platforms-vision-api/
+
+https://docs.aws.amazon.com/cli/latest/reference/textract/get-document-text-detection.html
+
+https://docs.aws.amazon.com/textract/latest/dg/API_StartDocumentTextDetection.html
+
+https://youtu.be/L2cAjgc1-bo
+
+https://youtu.be/Kwb9pB9kQjI
+
+https://youtu.be/V2chutR7RZo
+
+https://youtu.be/PY_N1XdFp4w
+
+https://github.com/Breta01/handwriting-ocr
+
+https://github.com/awslabs/handwritten-text-recognition-for-apache-mxnet
+
+
+C:\Users\Ganga Babu.M\AppData\Local\Programs\Python\Python39\lib\site-packages\urllib3\
+
+https://towardsdatascience.com/build-a-handwritten-text-recognition-system-using-tensorflow-2326a3487cd5
+
+https://github.com/githubharald/SimpleHTR/tree/97c2512f593760b14669b37a159ead2f1e54961b
+
+
+https://youtu.be/tvcBStzMzsw
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+https://medium.com/@latifvardar/how-does-tesseract-ocr-work-with-python-a6bccf85a002
+C:\Users\Ganga Babu.M\AppData\Local\Programs\Tesseract-OCR\
+
+https://gaopengbai0121.medium.com/training-your-tesseract-on-windows-10-df6756946d4f
+
+
+
+$$$$$$$$$$$$$$$$$
+https://medium.com/@latifvardar/how-does-tesseract-ocr-work-with-python-a6bccf85a002
+
+#############################################################################
+
+37 Years
+
+https://en.wikipedia.org/wiki/Comparison_of_optical_character_recognition_software
+
+https://en.wikipedia.org/wiki/Tesseract_(software)#:~:text=Originally%20developed%20by%20Hewlett%2DPackard,sponsored%20by%20Google%20since%202006.&text=Tesseract%204.1.1%20reading%20an%20image.&text=In%202006%2C%20Tesseract%20was%20considered,open%2Dsource%20OCR%20engines%20available.
+###

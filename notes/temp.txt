@@ -1,0 +1,17 @@
+https://www.geeksforgeeks.org/multithreading-python-set-1/
+
+https://github.com/dmitrijsk/attentionhtr
+
+https://docs.google.com/document/d/1zM4tMGmdMEByw4xb9QJxs-uWl2Vn0L6Dwr6ZI4gZUmI/edit#heading=h.x8tahx2db29
+
+https://github.com/GangababuGB/RM-I2T/tree/main
+
+https://github.com/githubharald/WordDetectorNN
+
+https://githubharald.github.io/word_detector.html
+
+https://medium.datadriveninvestor.com/vanishing-and-exploding-gradients-in-neural-networks-bddd4504e59c
+https://arxiv.org/pdf/2201.09390.pdf
+https://www.deeplearningbook.org/contents/rnn.html
+https://olympus.mygreatlearning.com/courses/7885/modules/items/271825
+https://drive.google.com/drive/folders/1h6edewgRUTJPzI81Mn0eSsqItnk9RMeO

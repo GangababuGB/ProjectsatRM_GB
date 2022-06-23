@@ -1,0 +1,18 @@
+# Steps to create a new environment
+cd /d E:
+cd E:\RM-OCRV3
+# to create a virtual environment
+py -m venv RM-OCRV3_venv
+# Now activate the RM-OCRV3_venv
+cd E:\RM-OCRV3\RM-OCRV3_venv\Scripts
+activate
+
+Libraries :
+pip --version
+py -m pip install -–upgrade pip
+pip --version
+pip install Pillow
+pip install webbrowser
+pip install PySimpleGUI
+pip install wheel
+py -m pip install logging
