@@ -1,0 +1,21 @@
+Sales
+https://www.youtube.com/watch?v=epI9W3MZ3Ts&list=PLfFghEzKVmjvuSA67LszN1dZ-Dd_pkus6&index=12
+
+https://www.youtube.com/watch?v=ntBa7YKc9XM&list=PLfFghEzKVmjvuSA67LszN1dZ-Dd_pkus6&index=11
+
+https://youtu.be/fiz1ORTBGpY?list=PLfFghEzKVmjvuSA67LszN1dZ-Dd_pkus6
+
+Insurance
+https://www.youtube.com/watch?v=ntBa7YKc9XM&list=PLfFghEzKVmjvuSA67LszN1dZ-Dd_pkus6&index=11
+
+Cancer Detection
+https://youtu.be/7MceDfpnP8k
+
+Krish Model choosing
+https://youtu.be/38SUUaMX5Rg
+
+Price-Optimization
+https://github.com/Qyum/Retail-Price-Optimization-of-Product-Using-Machine-Learning-Approaches/blob/main/Model/model_1.py
+
+
+https://youtu.be/UARBitWTIwQ

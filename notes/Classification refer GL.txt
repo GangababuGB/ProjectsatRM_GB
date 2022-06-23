@@ -1,0 +1,13 @@
+https://github.com/GreatLearningAIML1/chennai-oct-19-GangababuGB/blob/master/UnsupervisedLearning/Session15-Case%20study-K%20Means%20Depression-Sahil.ipynb
+https://github.com/GreatLearningAIML1/chennai-oct-19-GangababuGB/blob/master/EnsembleTechnique/Session9_CaseStudyDecisionTree_Sahil.ipynb
+https://github.com/GreatLearningAIML1/chennai-oct-19-GangababuGB/blob/master/UnsupervisedLearning/Session16_PCA%20Case_Study%20-%20data%20banknote%20authentication%20Sahil.ipynb
+https://github.com/GreatLearningAIML1/chennai-oct-19-GangababuGB/blob/master/EnsembleTechnique/Session10_CaseStudyEnsemble_Sahil.ipynb
+https://github.com/GangababuGB/Public/blob/master/IOT_DS_ALGORITHM/IOT_Anamoly_M1/Anomaly_DV2_DNN.ipynb
+https://github.com/GreatLearningAIML1/chennai-oct-19-GangababuGB/blob/master/INND_R6_Project1.Bank%20customer%20churn%20modelling_GB.ipynb
+https://github.com/GreatLearningAIML1/chennai-oct-19-GangababuGB/blob/master/Unsupervised%20Learning_R5_Project2-GB.ipynb
+https://github.com/GangababuGB/Gangababu_AIML_Academic-Projects/blob/main/Sequence_Models_in_NLP_PGPAIML_C_Oct'19_Sentiment_Classification_GB.ipynb
+https://github.com/GangababuGB/Gangababu_AIML_Academic-Projects/blob/main/R8_External_STATISITCAL_NLP.ipynb
+
+
+https://github.com/GangababuGB/Public/tree/master/IOT_DS_ALGORITHM/Data_Graph_DTModel_AutoMan_Anomaly
+

@@ -1,0 +1,34 @@
+Name
+form-parser
+ID
+1f95f41da20b776f
+Status
+ Enabled
+Processor Type
+Form Parser
+Encryption Type
+Google-managed key
+Prediction
+Prediction endpoint 
+https://us-documentai.googleapis.com/v1/projects/550330223438/locations/us/processors/1f95f41da20b776f:process 
+Human Review
+Not yet configured.
+
+https://us-documentai.googleapis.com/v1/projects/550330223438/locations/us/processors/1f95f41da20b776f:process
+1f95f41da20b776f
+
+Vertex AI
+
+Name
+ocr-processor
+ID
+ebee5b7a33c0e48a
+Status
+ Enabled
+Processor Type
+Document OCR
+Encryption Type
+Google-managed key
+Prediction
+Prediction endpoint 
+https://us-documentai.googleapis.com/v1/projects/550330223438/locations/us/processors/ebee5b7a33c0e48a:process 
