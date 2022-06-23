@@ -1,2 +1,6 @@
 
 https://github.com/GangababuGB/GreatLearning_Mentor_ML_Code/tree/master/ComputerVision
+
+https://github.com/GangababuGB/handwriting-ocr
+
+https://github.com/GangababuGB/Getting-Things-Done-with-Pytorch
