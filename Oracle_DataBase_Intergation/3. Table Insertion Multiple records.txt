@@ -1,0 +1,23 @@
+try:
+    # Create connection
+    con = cx_Oracle.connect('TRAINEE19/TRAINEE19@//192.168.0.99:1521/rmclient')
+except Exception as err:
+    print('Error while creating the connection ', err)
+else:
+    print(con.version)
+    try:
+        # create cursor
+        cur = con.cursor()
+        sql_insert = """ 
+        INSERT INTO CEO_DETAILS VALUES (:1, :2, :3, :4)
+        """
+        data = [('Sundar','Pichai','Google',47),('Mark','Zuck','Meta',45),('Kabilan','S','RoadmapIT',54)]
+        cur.executemany(sql_insert,data)
+    except Exception as err:
+        print('Error while inserting the data', err)
+    else:
+        print('Table Insert completed.')
+        con.commit()
+finally:
+    cur.close()
+    con.close()

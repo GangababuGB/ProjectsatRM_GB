@@ -1,0 +1,21 @@
+try:
+    con = cx_Oracle.connect('TRAINEE19/TRAINEE19@//192.168.0.99:1521/rmclient')
+except Exception as err:
+    print('Error while creating the connection ', err)
+else:
+    try:
+        cur = con.cursor()
+        sql_fetch = """
+        SELECT * FROM CEO_DETAILS
+        """
+        cur.execute(sql_fetch)
+        data = cur.fetchall()
+        print(data)
+    except Exception as err:
+        print('Exception occurred while fetching the record', err)
+    else:
+        print('Fetched.')
+    finally:
+        cur.close()
+finally:
+    con.close()
