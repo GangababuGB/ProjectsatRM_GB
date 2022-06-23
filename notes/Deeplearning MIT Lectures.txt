@@ -1,0 +1,14 @@
+https://knowyourdata-tfds.withgoogle.com/#tab=STATS&dataset=lvis
+
+https://paperswithcode.com/sota/instance-segmentation-on-lvis-v1-0-val
+
+https://paperswithcode.com/sota/object-detection-on-lvis-v1-0-val
+
+https://mmdetection.readthedocs.io/en/latest/_modules/mmdet/datasets/lvis.html
+
+
+Deeplearning Playlist
+https://youtube.com/playlist?list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI
+
+Coding Tensorflow
+https://youtube.com/playlist?list=PLQY2H8rRoyvwLbzbnKJ59NkZvQAW9wLbx

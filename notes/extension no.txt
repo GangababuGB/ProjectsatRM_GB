@@ -1,0 +1,13 @@
+\\192.168.0.240\ai
+204 - HR no.			HR
+208 - network team		Network
+211 - hrm,Thamarai
+215 - Priyan,BHARANI		DBA
+217 - NAVEEN_DBA, Giri
+218 - Ml&AI			ML&AI
+216 - Naveen_ML&AI
+210 - BALA MURALI, Ishwarya	APEX
+219 - APEX
+220 - Suresh			Project Manager
+224 - Priya 			Co-ordinator 2nd Floor
+228 - .net team(Senthil sir)	.Net

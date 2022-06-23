@@ -1,0 +1,6 @@
+What are some benefits of using a word2vec embeddings trained over a large corpus in NLP
+tasks (select all that apply)?
+
+The use of hidden layers in a neural network will render no benefit,
+you were to use one of the activation functions below. Which one is it?
+

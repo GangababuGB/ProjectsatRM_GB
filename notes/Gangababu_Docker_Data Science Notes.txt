@@ -1,0 +1,528 @@
+04/04/2021
+
+Mosh:
+Basics of Docker:
+https://youtu.be/pTFZFxd4hOI
+
+Nana:
+Docker Tutorial for Beginners [FULL COURSE in 3 Hours]
+https://youtu.be/3c-iBn73dDE
+
+Docker is the de facto standard for building, shipping and running applications in a consistent manner. 
+That's why most companies use it and are looking for developers with Docker skills. If you're looking for
+ a career in software or DevOps engineering, you must have Docker on your resume. And not only that, you 
+should know it well and be able to use it to effectively package and deploy your applications.
+
+Front-End
+Back-End
+APIs
+Databases
+Basic Git Commands: Cloning, commiting, push & pulling
+
+Section 1:
+What is Docker?
+Virtual Machines vs Containers
+Architecture of Docker
+Installing Docker
+Development Workflow
+
+
+What is docker?
+A platform for building, running and shipping applications in a consistent manner to run on machines with
+configured packages/dependencies.
+- each applications runs with dependecies inside an Isolated enviroment.
+
+Virtual Machines vs Containers:
+VM are slow to start, resource intensive.
+Container : An Isolated enviroment for running an applcation.
+-Allows running multiple apps in isolation
+-Lightweight
+-Uses OS of the host
+-Starts quickly
+-Needs less hardware resources
+
+Architecture of Docker:
+Client component ----REST API----> SERVER component (Docker Engine)
+Containers are Special Process which doesn't contain full-blown OS.
+Technically Containers shares the Kernel of the host.
+Kernel is the core of the OS.
+Linux Containers shares only Linux Kernel. But, Windows Containers shares both Windows and Linux.
+Docker on Mac uses LightWeight Linux VM to run Linux Containers.
+
+Installing Docker:
+
+Ensure the Enable Hyper-V Windows Features or the Install required Windows components for WSL 2 
+option is selected on the Configuration page.
+Need to wait till docker runs
+> docker version
+
+Development Workflow:
+Take the applicaton and Dockerize it (i.e.) add a docker file in a application.
+Docker file is a plain text file that includes instructions that docker uses to package up this
+applications into an image this image contains everything our applications needs to run.
+Typically it Cut-down OS, Runtime environment eg. Node or python, It contains Application files -
+Third-Party libraries, Environment variables.
+
+We create a docker file and give it to docker for packaging our application into an image.
+Once we have an image we tell docker to start a container to use that image.
+Dev(Image) ---> REGISTRY(Docker HOP) ---> 
+Docker HOP - Docker Hub to docker is like github to git, Its a storage for docker that anyone can use.
+From Docker Hub We can put it on any machines which run docker
+
+Docker in Action:
+> mkdir hello-docker
+> cd hello-docker
+> code . # vs code as editor
+add new file : app.js
+inside app.js
+	console.log("Hello Docker!");
+@Terminal
+> node app.js
+Instruction to put Docker image on new machine /Deploying this program:
+* Start with an OS
+* Install Node
+* Copy app files
+* Rund node app.js
+
+to execute a complex image we need to write the instruction in a docker image and let docker package 
+our applcation.
+
+Add a file 'Dockerfile'
+# its kind of inheritance in programing
+FROM linux
+alpine a smll linux distribution
+
+> FROM node:alpine
+> COPY . /app
+> WORKDIR /app
+> CMD node /app/app.js
+
+Terminal:
+> docker bild -t hello-docker .
+now image is not stored yet
+> docker image ls
+> docker run hello-docker
+google: play with docker
+create a profile
+start a lab
+To pull docker image
+Alt+Enter to maximize terminal 
+$ docker pull codewithmosh/hello-docker
+$ docker image ls
+$ docker run codewithmosh/hello-docker
+
+Linux Command Line:
+Linux Distribution::
+Ubuntu Debian Alpinr Fedora CentOS
+
+Ubuntu:
+goto: hub.docker.com search: ubuntu
+@Terminal
+> docker run ubuntu
+to check runnng container
+> docker PS
+to check runnng container which is closed
+> docker PS -a
+to start a container and interact with it run:
+> docker run -it ubuntu
+shell is a program which passes our command to OS to execute them
+Shell prompt:
+root@name_a_machine:/# highest privelige
+> echo hello
+> whoami # user
+> echo $0 #location of the directory
+use arrow up or down to use previous
+> history # to view all commands used earlier
+
+Managing Packages
+> apt 
+> apt-get
+list, search, ...
+> apt list
+> apt update
+> apt install nano
+to exit nano use ctrl+x
+to remove a package
+> apt remove nano
+In Linux we have these file in Linux directory:
+/
+bin boot dev(devices) etc(editable config files) home root lib var proc(files represents processing files)
+pwd - print working directory
+ls - list
+> ls -1
+> ls -l (L long line list)
+> cd - change directory to relative or absolute directory
+> dc etc/a # press tab
+> cd .. #to go one level up
+> cd ../..
+> ls /bin #to view list of files from any where.
+> cd ~ # directly goes to home directory
+> mkdir test
+> mv test docker # mv to rename or move
+> cd docker
+> touch hello-docker.txt
+> touch f1.txt f2.txt f3.txt f4.txt
+> rm f1.txt
+> rm file*
+> rm -r docker/ # to remove directory
+
+Editing and Viewing Files
+> nano file1.txt
+Hello
+World
+[] ctrl+x
+> cat file1.txt # to view content of the file
+> more /etc/adduser.conf
+> apt install less # to use up and down arrow
+> less /etc/adduser.conf
+> head -n 5
+> tail -n 5
+
+
+Redirection:
+standard input standard output
+
+> cat file1.txt > file2.txt
+> cat file1.txt file2.txt combined.txt
+> echo hello > hello.txt
+> ls -l /etc > files.txt
+
+https://youtu.be/pTFZFxd4hOI
+
+######################################################################################################################################################
+Docker Tutorial for Beginners [FULL COURSE in 3 Hours]
+https://youtu.be/3c-iBn73dDE
+
+By the end, you will have a deep understanding of the concepts and a great overall big picture of how Docker is used 
+in the whole software development process. The course is a mix of animated theoretic explanation and hands-on demo’s 
+to follow along, so you get your first hands-on experience with Docker and feel more confident using it in your project.
+
+▬▬▬▬▬▬ T I M E S T A M P S ⏰  ▬▬▬▬▬▬
+0:00 - Intro and Course Overview
+01:58 - What is Docker?
+10:56 - What is a Container?
+19:40 - Docker vs Virtual Machine
+23:53 - Docker Installation
+42:02 - Main Docker Commands
+57:15 - Debugging a Container
+1:06:39 - Demo Project Overview - Docker in Practice
+1:10:08 - Developing with Containers
+1:29:49 - Docker Compose - Running multiple services
+1:42:02 - Dockerfile - Building our own Docker Image
+2:04:36 -  Private Docker Repository - Pushing our built Docker Image into a private Registry on AWS
+2:19:06 - Deploy our containerized app
+2:27:26 - Docker Volumes - Persist data in Docker
+2:33:03 - Volumes Demo - Configure persistence for our demo project
+2:45:13 - Wrap Up
+
+🔗 Links
+►  Developing with Containers - Demo project: https://gitlab.com/nanuchi/techworld-...
+
+🚀  1. What is Docker?
+►  What is a container and what problems does it solve?
+►  Container repository - where do containers live?
+
+🚀  2. What is a Container technically
+►  What is a container technically? (layers of images)
+►  Demo part (docker hub and run a docker container locally)
+
+🚀  3. Docker vs Virtual Machine
+
+🚀  4. Docker Installation
+►  Before Installing Docker - prerequisites
+►  Install docker on Mac, Windows, Linux
+
+❗️ Note: Docker Toolbox has been deprecated. Please use Docker Desktop instead. See for Mac (https://docs.docker.com/docker-for-mac/) and for Windows (https://docs.docker.com/docker-for-wi...).
+
+🚀  5. Main Docker Commands
+►  docker pull, docker run, docker ps, docker stop, docker start, port mapping
+
+🚀  6. Debugging a Container
+►  docker logs, docker exec -it
+
+🚀  7. Demo Project Overview - Docker in Practice (Nodejs App with MongoDB and MongoExpress UI)
+
+🚀  8. Developing with Containers 
+►  JavaScript App (HTML, JavaScript Frontend, Node.js Backend)
+►  MongoDB and Mongo Express Set-Up with Docker
+►  Docker Network concept and demo
+
+🚀  9. Docker Compose - Running multiple services
+►  What is Docker Compose?
+►  How to use it - Create the Docker Compose File
+►  Docker Networking in Docker Compose
+
+🚀  10. Dockerfile - Building our own Docker Image
+►  What is a Dockerfile?
+►  Create the Dockerfile
+►  Build an image with Dockerfile
+
+🚀  11. Private Docker Repository - Pushing our built Docker Image into a private Registry on AWS
+►  Private Repository on AWS ECR
+►  docker login
+►  docker tag
+►  Push Docker Image to the Private Repo
+
+🚀  12. Deploy our containerized application
+
+🚀  13. Docker Volumes - Persist data in Docker
+►  When do we need Docker Volumes?
+►  What is Docker Volumes?
+►  Docker Volumes Types
+
+🚀  14. Volumes Demo - Configure persistence for our demo project
+
+▬▬▬▬▬▬ Want to learn more? 🚀  ▬▬▬▬▬▬ 
+DevOps Tools, like GitHub Actions, Terraform	►  https://bit.ly/2W9UEq6
+Jenkins Pipeline Tutorials                      ►  https://bit.ly/2Wunx08
+Full Kubernetes tutorial                        ►  https://www.youtube.com/playlist?list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC
+
+###############################################################################################################################################################################
+Docker Terminal codes:
+goto hub.docker.com _ Search: Postgresql
+@ Terminal :
+> docker run postgrees:9.6 # to run specific docker image
+> doker ps #to see running docker
+
+Docker Basic commands
+'Container' is a running environment for 'IMAGE'
+An application image may contian postgres, redis, Mongodb,etc..
+A container has File System, Environment config & application image, etc
+
+@ Terminal :
+> docker pull redis
+> docker run redis
+To check open new terminal
+> docker ps
+if you give Ctrl+C docker quits, To avoid run it in a detach mode.
+> docker run -d redis
+To restart docker incase of runtime issue
+> docker stop 'ContainerID'
+> docker start 'ContainerID'
+> docker ps
+> docker ps -a # to see history of docker executed.
+> docker run redis:4.0
+
+Container port vs Host port:
+Binding of the ports, we need to stop all docker containers
+#> docker run -d -p
+> docker run -p6000:6379 #6000 is a host port
+PORTS
+0.0.0.0:6000 -> 6379/tcp
+> docker run -p6000:6379 -d redis
+> docker ps -a
+> docker run -p6001:6379 -d redis:4.0
+> docker ps -a
+PORTS
+0.0.0.0:6001 -> 6379/tcp
+
+Debugging containers:
+> docker run -d -p
+> docker images
+> docker ps
+> docker logs ContainerID
+or 
+NAMES
+dreamy_bell < container name
+> docker logs dreamy_bell 
+Rename container
+> docker stop ContID
+> docker run -d -p6000:6379 --name redis-older redis:4.0
+> docker exec # get the terminal of the specific container
+> docker exec -it contID /bin/bash
+> pwd
+> cd/
+> env
+> exit
+
+> docker run # create a new image
+> docker start # working with container
+
+Demo project - Overview
+Workflow with Docker
+Developing a JavaScript App
+
+Mongo DB, 
+js, 
+Docker Hub ---> commit( GIT ) ---> CI ( Jenkins )  ---> push 
+---> Docker Repository (Private) ---> Pull ---> [Dev Server pulls both images] 
+						Mongo DB & js
+						Docker Hub
+
+Demo Developing with Containers:
+JS and Nodejs application
+JD and node js
+MongoDB Docker Container
+mongoDB
+
+Docker in software Development
+Frontend	Backend		--->	MongoDB <--- MongoExpress
+HTML5 JS 	node js		
+localhost:3000/my-app			localhost:8081/db/my-db
+
+Demo project:
+https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa25ILTlvTEZUa3RVRnltVlpMQTAyNTJnWTh5d3xBQ3Jtc0tsM054SlJfMDB2Q05ESjVvUTJ1aG5JdGU1c3QwN2p3RVlNQkJESDBtVTBTOGwtZHJUR1FWWTItbndQSFB5RmRWamdHMEtsRWp3UU1EenNSMU9DUzlJVFVJSWpBNnFHQ1dad1VYWmhzdVB4YXYtcTVidw&q=https%3A%2F%2Fgitlab.com%2Fnanuchi%2Ftechworld-js-docker-demo-app&v=3c-iBn73dDE
+
+> docker pull mongo
+> docker pull mongo-express
+
+Docker Network
+> docker network ls
+mongoDb and mongo express 
+> docker network create mongo-network
+default port 27017 for mongo
+specify root user password
+> docker run -p 27017:27017 -d  -e MONGO_INITDB_ROOT_USER=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network mongo
+> dockerrun -d \
+
+$ docker run -d \
+> -p 8081:8081 \ 
+> -e ME_CONFIG_MOGODB_ADMINUSERNAME=admin \
+> -e ME_CONFIG_MOGODB_ADMINPASSWORD=password \
+> --net mongo-network \ 
+> --name mongo-express \
+> -e ME_CONFIG_MOGODB_SERVER=mongodb \
+> mongo-express
+docker logs
+check :
+localhost:8081
+Databases []
+user-account > create Databases
+
+> docker ps
+
+Docker compose to replace docker commands.md
+structed way 
+> 
+mongo-docker-compose.yaml
+verson:'3'
+services:
+   mongodb:
+     image:mongo
+     port:
+      -27017:27017
+    environment:
+     - ME_CONFIG_MOGODB_ADMINUSERNAME=admin
+     - ME_CONFIG_MOGODB_ADMINPASSWORD=password
+   mongo-express:
+     image:mongo-express
+     ports:
+       - 8080:8080
+    environment:
+     - ME_CONFIG_MOGODB_ADMINUSERNAME=admin
+     - ME_CONFIG_MOGODB_ADMINPASSWORD=password
+     - ME_CONFIG_MOGODB_SERVER=mongodb
+
+Docker compose will take care of create Docker network
+
+> docker-compose -f mongo.yaml up
+> docker-compose -f mongo.yaml down
+
+Dockerfile: To deploy
+
+Commit : Git
+CI : push : Jenkins
+
+-FROM image
+
+in DOCKERFILE:
+
+FROM node:13-alpine
+ENV MONGO_DB_USERNAME=admin\
+    MONGO_DB_PWD=password
+RUN mkdir -p /home/app
+COPY . /home/app
+CMD ["node","/home/app/server.js"]
+
+rename file: Dockerfile
+
+> docker build -t my-app:1.0 .
+> docker images
+
+we need name and tag of the image created
+
+we have to commit the image in repository with the code
+Jenkins takes the docker file
+Jenkins will create the image based on docker file
+
+tip: we need to remove any incorrect image built earlier because we cannot over write.
+> docker ps -a | grep mt-app
+> docker rm contID
+> docker rmi contID
+
+to rebuild
+> docker buils -t my-app:1.0 .
+
+> docker images
+> docker run my-app:1.0
+> docker exec -it contID
+or
+> docker exec -it contID /bin/sh
+/ # ls
+/ # env
+/ # ls /home/app/
+
+Create app directory in vs code for remove artifact just keep file required to start a app.
+keep necessary file refer video 2.02.16
+in DOCKERFILE:
+
+FROM node:13-alpine
+ENV MONGO_DB_USERNAME=admin\
+    MONGO_DB_PWD=password
+RUN mkdir -p /home/app
+COPY ./app /home/app
+CMD ["node","/home/app/server.js"]
+
+> docker images
+> docekr ps
+remove old and rebuild
+
+Docker Registry : Amazon ECR
+DOCKER private repository
+Registry options
+build & tag an image
+docker login
+docker push
+
+2:05:04
+
+Elastis container registry:
+Create repository / my-app
+> docker login # for Jenkins or AWS login command
+for AWS Pre-Requisites:
+1. AWS Cli needs to be installed
+2. Credentials configured
+
+> (aws ecr get-login --no-include-email --region eu-central-1)
+
+Build your Docker image
+> docker build -t my-app
+
+Image naming in Docker registries
+registryDomain/imageName:tag
+
+In DockerHub:
+> docker pull mongodb
+
+In Aws ECR:
+> docker tag my-app:latest 66........dkr.ecr.eu-central-1.amazonaws.com/my-app:1.0
+> docker push nameoftheimage/tag ^^^
+@ aws ECR>repositories>my-app
+Image tag 	Image URI 	pushed at 	Digest	Size	scan status
+1.0
+
+If you need to push new version
+local terminal
+> docker -t my-app:1.1 .
+> docekr tag my-app1.1 664.........com/my-app:1.1
+> docker push ...
+
+Docker login once is enough
+
+
+Pending
+
+2:19:06 - Deploy our containerized app
+2:27:26 - Docker Volumes - Persist data in Docker
+2:33:03 - Volumes Demo - Configure persistence for our demo project
+2:45:13 - Wrap Up

@@ -1,0 +1,80 @@
+chrome://flags/
+
+100daysofcode with Python programming | Tamil
+https://www.youtube.com/playlist?list=PLhVRQY-S8E3QVslcUzl5wBcn6c1iehoZ9
+
+Build Your OWN AI
+https://www.youtube.com/watch?v=Y5atyJbVsAU
+
+Amazon Machine Learning
+file:///E:/Machine%20Learning%20Developer's%20Guide.pdf
+
+Python Interview Questions
+file:///E:/Top%20100%20Python%20interview%20Questions%20.pdf
+
+Self Learning Notebook python:
+https://colab.research.google.com/drive/1KIk5cTEeW2Jtspy3mSDJ88Im5vt98qr2#scrollTo=BcsWdXBY-y8N
+
+All sort of programming concepts:
+https://www.geeksforgeeks.org/practice-for-cracking-any-coding-interview/
+
+Advance Practice List:
+https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/
+
+AWS
+https://drive.google.com/drive/folders/1QLrDkZo6hXA8OQykNGdqiJRRRIXB4YBM
+
+AWS Python
+https://drive.google.com/drive/folders/1xAd4qxZsQbSJweCEZlIRYoMgnACLhpNp
+https://drive.google.com/drive/folders/1VE_QrjVdEx_pj9mQTEvr0MTgrrcgGZ8w
+
+excercism difficult codes:
+https://exercism.org/tracks/python
+
+Terraform
+https://drive.google.com/drive/folders/1XtyehUwrx4HWVvvjOB9hk1J_1Yr9i6eG
+
+awesome colab notebook
+https://github.com/GangababuGB/awesome-colab-notebooks
+
+Topcoder Articles
+https://www.topcoder.com/thrive
+
+OpenAI:
+https://beta.openai.com/docs/introduction/next-steps
+
+Google Codelabs:
+https://codelabs.developers.google.com/?authuser=0&category=aiandmachinelearning%2Copensource
+
+IBM Data Science Professional Certificate:
+https://www.coursera.org/professional-certificates/ibm-data-science?trk_ref=caCareerCard#courses
+
+1. What is Data Science?
+https://www.coursera.org/learn/what-is-datascience?specialization=ibm-data-science
+
+2. Tools for Data Science
+https://www.coursera.org/learn/open-source-tools-for-data-science?specialization=ibm-data-science
+
+3. Data Science Methodology
+https://www.coursera.org/learn/data-science-methodology?specialization=ibm-data-science
+
+4. Python for Data Science, AI & Development
+https://www.coursera.org/learn/python-for-applied-data-science-ai?specialization=ibm-data-science
+
+5. Python Project for Data Science
+https://www.coursera.org/learn/python-project-for-data-science?specialization=ibm-data-science
+
+6. Databases and SQL for Data Science with Python
+https://www.coursera.org/learn/sql-data-science?specialization=ibm-data-science
+
+7. Data Analysis with Python
+https://www.coursera.org/learn/data-analysis-with-python?specialization=ibm-data-science
+
+8. Data Visualization with Python
+https://www.coursera.org/learn/python-for-data-visualization?specialization=ibm-data-science
+
+9. Machine Learning with Python
+https://www.coursera.org/learn/machine-learning-with-python?specialization=ibm-data-science
+
+10. Applied Data Science Capstone
+https://www.coursera.org/learn/applied-data-science-capstone?specialization=ibm-data-science

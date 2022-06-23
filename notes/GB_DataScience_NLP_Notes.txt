@@ -1,0 +1,152 @@
+https://github.com/veb-101/Data-Science-Projects
+
+Skewness & Kurtosis
+https://medium.com/@atanudan/kurtosis-skew-function-in-pandas-aa63d72e20de
+Skewness is a measure of asymmetry of a distribution.
+· In a normal distribution, the mean divides the curve symmetrically into two equal parts at the median and the value of skewness is zero.
+· When a distribution is asymmetrical the tail of the distribution is skewed to one side-to the right or to the left.
+Mean on the right - Positive Skewness
+Mean on the left - Negative Skewness
+https://miro.medium.com/max/854/1*tSEpN8McF1r4Pi8uf_2BnA.png
+Important Notes:
+· If the skewness is between -0.5 and 0.5, the data are fairly symmetrical
+· If the skewness is between -1 and — 0.5 or between 0.5 and 1, the data are moderately skewed
+· If the skewness is less than -1 or greater than 1, the data are highly skewed
+· A skewness value of 0 in the output denotes a symmetrical distribution of values
+
+https://miro.medium.com/max/1310/1*aJ5lIX7Cm8LgSjr1r6T2gg.png
+
+Kurtosis
+
+· Kurtosis is one of the two measures that quantify shape of a distribution. kutosis determine the volume of the outlier.
+· Kurtosis describes the peakedness of the distribution. 
+· If the distribution is tall and thin it is called a leptokurtic distribution
+(Kurtosis > 3). Values in a leptokurtic distribution are near the mean or at the extremes.
+· A flat distribution where the values are moderately spread out 
+(i.e., unlike leptokurtic) is called platykurtic(Kurtosis <3) distribution.
+· A distribution whose shape is in between a leptokurtic distribution and a platykurtic distribution is called a 
+mesokurtic(Kurtosis=3) distribution. A mesokurtic distribution looks more close to a normal distribution.
+
+https://miro.medium.com/max/830/1*bcg1TOIa6uFVeVe7eWSqGQ.png
+
+Important Notes:
+· Along with skewness, kurtosis is an important descriptive statistic of data distribution. However, the two concepts must not be confused with each other. 
+Skewness essentially measures the symmetry of the distribution, while kurtosis determines the heaviness of the distribution tails.
+· It is the sharpness of the peak of a frequency-distribution curve .It is actually the measure of outliers present in the distribution.
+· High kurtosis in a data set is an indicator that data has heavy outliers.
+· Low kurtosis in a data set is an indicator that data has lack of outliers.
+· If kurtosis value + means pointy and — means flat.
+
+https://miro.medium.com/max/886/1*2VsxhpY2QYEoryg_adXZlw.png
+_____________________________________________________________________________________________________________________________________________
+
+The Big Question – Normalize or Standardize?
+Normalization is good to use when you know that the distribution of your data does not follow a Gaussian distribution. ...
+Standardization, on the other hand, can be helpful in cases where the data follows a Gaussian distribution.
+
+
+https://www.analyticsvidhya.com/blog/2020/04/feature-scaling-machine-learning-normalization-standardization/
+_____________________________________________________________________________________________________________________________________________
+# Natural Language Processing - NLP:
+
+Which technique is used for keyword normalization in NLP, the process of converting a keyword into its base form?
+Lemmatization helps to get to the base form of a word, e.g. playing -> play, eating -> eat
+_____________________________________________________________________________________________________________________________________________
+what is cosine similarity in nlp?
+Cosine similarity is one of the metric to measure the text-similarity between two documents irrespective of their size in 
+Natural language Processing. A word is represented into a vector form. The text documents are represented in n-dimensional vector space.
+_____________________________________________________________________________________________________________________________________________
+Which technique can be used to compute the distance between two word vectors in NLP?
+Euclidean distance & Cosine Similarity
+_____________________________________________________________________________________________________________________________________________
+Distance between two word vectors can be computed using Cosine similarity and Euclidean
+Distance. Cosine Similarity establishes a cosine angle between the vector of two words. A cosine
+angle close to each other between two word vectors indicates the words are similar and vice a
+versa.
+E.g. cosine angle between two words “Football” and “Cricket” will be closer to 1 as compared to
+angle between the words “Football” and “New Delhi”
+_____________________________________________________________________________________________________________________________________________
+
+What are the possible features of a text corpus in NLP?
+Count of the word in a document, Vector notation of the word, Part of Speech Tag, Basic Dependency Grammar.
+_____________________________________________________________________________________________________________________________________________
+You created a document term matrix on the input data of 20K documents for a Machine learning model. 
+Which are the techniques can be used to reduce the dimensions of data? 
+1. Keyword Normalization
+2. Latent Semantic Indexing
+3. Latent Dirichlet Allocation
+_____________________________________________________________________________________________________________________________________________
+Dependency Parsing and Constituency Parsing techniques can be used for noun phrase detection,
+verb phrase detection, subject detection, and object detection in NLP. 
+_____________________________________________________________________________________________________________________________________________
+Dissimilarity between words expressed using cosine similarity will have values significantly higher than 0.5 - True
+_____________________________________________________________________________________________________________________________________________
+Which one of the following are keyword Normalization techniques in NLP
+a. Stemming
+b. Part of Speech
+c. Named entity recognition
+d. Lemmatization
+
+Lemmatization and stemming are the techniques of keyword normalization
+
+Part of Speech (POS) and Named Entity Recognition(NER) are not keyword Normalization
+techniques. Named Entity help you extract Organization, Time, Date, City, etc..type of entities
+from the given sentence, whereas Part of Speech helps you extract Noun, Verb, Pronoun,
+adjective, etc (there are 8 POS)..from the given sentence tokens. 
+_____________________________________________________________________________________________________________________________________________
+In a corpus of N documents, one randomly chosen document contains a total
+of T terms and the term “hello” appears K times.
+What is the correct value for the product of TF (term frequency) and IDF (inverse-documentfrequency), if the term “hello” appears in 
+approximately one-third of the total documents?
+a. KT * Log(3)
+b. T * Log(3) / K
+c. K * Log(3) / T
+d. Log(3) / KT
+Answer : (c)
+formula for TF is K/T
+formula for IDF is log(total docs / no of docs containing “data”)
+= log(1 / (⅓))
+= log (3)
+Hence correct choice is Klog(3)/T
+_____________________________________________________________________________________________________________________________________________
+Inverse Document Frequency (IDF) 
+In NLP, The IDF algorithm decreases the weight for commonly used words and increases the weight for words that are not used very much 
+in a collection of documents .
+_____________________________________________________________________________________________________________________________________________
+In NLP, The process of removing words like “and”, “is”, “a”, “an”, “the” from a sentence is called as Lemmatization.
+In Lemmatization, all the stop words such as a, an, the, etc.. are removed. One can also define custom stop words for removal.
+_____________________________________________________________________________________________________________________________________________
+The process of converting a sentence or paragraph into tokens is referred to tokenization.
+In NLP, Tokens are converted into numbers before giving to any Neural Network _True
+In NLP, all words are converted into a number before feeding to a Neural Network. 
+
+Tokenization is breaking the raw text into small chunks. Tokenization breaks the raw text into words, sentences called tokens. These tokens 
+help in understanding the context or developing the model for the NLP. The tokenization helps in interpreting the meaning of the text by 
+analyzing the sequence of the words.
+_____________________________________________________________________________________________________________________________________________
+TF-IDF helps to establish how important a particular word is in the context of the document corpus. TF-IDF takes into account the 
+number of times the word appears in the document and offset by the number of documents that appear in the corpus.
+● TF is the frequency of term divided by a total number of terms in the document.
+● IDF is obtained by dividing the total number of documents by the number of documents containing the term and then taking the 
+logarithm of that quotient. 
+● Tf.idf is then the multiplication of two values TF and IDF. 
+_____________________________________________________________________________________________________________________________________________
+Named entity recognition, The process of identifying people, an organization from a given sentence.
+_____________________________________________________________________________________________________________________________________________
+pre-processing technique in NLP:
+a. Stemming and Lemmatization
+b. converting to lowercase
+c. removing punctuations
+d. removal of stop words
+_____________________________________________________________________________________________________________________________________________
+In text mining, converting text into tokens and then converting them into an integer or floating-point vectors can be done using 
+CountVectorizer 
+text =[“Rahul is an avid writer, he enjoys studying understanding and presenting. He loves to play”]
+vectorizer = CountVectorizer()
+vectorizer.fit(text)
+vector = vectorizer.transform(text)
+print(vector.toarray())
+output
+[[1 1 1 1 2 1 1 1 1 1 1 1 1 1]] 
+_____________________________________________________________________________________________________________________________________________
+Advanced NLP techniques such as Word2Vec, GloVe word embeddings, and advanced models such as GPT, ELMo, BERT, XLNET based questions, and explanations
